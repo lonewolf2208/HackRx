@@ -8,10 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.hackrx40.R
 import com.example.hackrx40.databinding.FragmentScheduleBinding
+import com.example.hackrx40.model.Scraperdataclass
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -65,6 +71,39 @@ class Schedule : Fragment() {
                 ).show()
             }
 
+        }
+        binding.materialbutton.setOnClickListener {
+            var data = Scraperdataclass(
+                binding.targetUrl.text.toString(),
+                binding.title.text.toString(),
+                binding.companyname.text.toString(),
+                binding.keywords.text.toString(),
+                binding.institution.text.toString(),
+                binding.autoCompleteTextView.text.toString(),
+                binding.autoCompleteTextView2.text.toString(),
+                binding.autoCompleteTextView5.text.toString(),
+                binding.autoCompleteTextView4.text.toString(),
+                binding.autoCompleteTextView6.text.toString(),
+                binding.button1.text.toString(),
+                binding.button2.text.toString()
+            )
+            RetrofitClient2.init().senddata(data).enqueue(object : Callback<ResponseBody?> {
+                override fun onResponse(
+                    call: Call<ResponseBody?>,
+                    response: Response<ResponseBody?>
+                ) {
+                    if(response.isSuccessful){
+                        Toast.makeText(requireContext(),"hii", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        Toast.makeText(requireContext(),"already sent", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    Toast.makeText(requireContext(),"nahi ho paa raha mujhse", Toast.LENGTH_LONG).show()
+                }
+            })
         }
 
 

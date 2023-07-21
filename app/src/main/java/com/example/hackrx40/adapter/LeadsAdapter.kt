@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hackrx40.databinding.LeadsDataBinding
-import com.example.hackrx40.model.Leads_data_model
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class LeadsAdapter(var data: Leads_data_model):RecyclerView.Adapter<LeadsAdapter.ViewHolder>() {

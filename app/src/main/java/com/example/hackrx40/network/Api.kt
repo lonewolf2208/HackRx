@@ -1,7 +1,6 @@
 package com.example.hackrx40.network
 
 import com.example.leadiify.model.Get_Templates_Data
-import com.example.hackrx40.model.Leads_data_model
 import com.example.leadiify.model.Scraperdataclass
 import com.example.leadiify.model.SendConnection
 import com.example.hackrx40.model.campaign_data

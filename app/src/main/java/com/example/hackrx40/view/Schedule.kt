@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.hackrx40.R
 import com.example.hackrx40.databinding.FragmentScheduleBinding
 import com.example.hackrx40.model.Scraperdataclass
+import com.example.hackrx40.network.RetrofitClient
+
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import okhttp3.ResponseBody
@@ -23,7 +26,7 @@ import java.util.Calendar
 import java.util.Locale
 
 
-class Schedule : Fragment() {
+class  Schedule : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
 
@@ -32,10 +35,10 @@ class Schedule : Fragment() {
         val services = resources.getStringArray(R.array.TypesofServices)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown1, services)
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
-
-        val age = resources.getStringArray(R.array.AgeCategory)
-        val arrayAdapter2 = ArrayAdapter(requireContext(), R.layout.dropdown1, age)
-        binding.autoCompleteTextView2.setAdapter(arrayAdapter2)
+//
+//        val age = resources.getStringArray(R.array.AgeCategory)
+//        val arrayAdapter2 = ArrayAdapter(requireContext(), R.layout.dropdown1, age)
+//        binding.autoCompleteTextView2.setAdapter(arrayAdapter2)
 
         val action = resources.getStringArray(R.array.SelectAction)
         val arrayAdapter3 = ArrayAdapter(requireContext(), R.layout.dropdown1, action)
@@ -73,6 +76,7 @@ class Schedule : Fragment() {
 
         }
         binding.materialbutton.setOnClickListener {
+            binding.progressBar3.visibility=View.VISIBLE
             var data = Scraperdataclass(
                 binding.targetUrl.text.toString(),
                 binding.title.text.toString(),
@@ -87,25 +91,27 @@ class Schedule : Fragment() {
                 binding.button1.text.toString(),
                 binding.button2.text.toString()
             )
-            RetrofitClient2.init().senddata(data).enqueue(object : Callback<ResponseBody?> {
+            RetrofitClient.init().senddata(data).enqueue(object : Callback<ResponseBody?> {
                 override fun onResponse(
                     call: Call<ResponseBody?>,
                     response: Response<ResponseBody?>
                 ) {
+                    binding.progressBar3.visibility=View.GONE
                     if(response.isSuccessful){
-                        Toast.makeText(requireContext(),"hii", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),"Send",Toast.LENGTH_LONG).show()
+                        findNavController().navigate(R.id.action_schedule_to_leads)
                     }
                     else{
-                        Toast.makeText(requireContext(),"already sent", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),"Already sent",Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                    Toast.makeText(requireContext(),"nahi ho paa raha mujhse", Toast.LENGTH_LONG).show()
+                    binding.progressBar3.visibility=View.GONE
+                    Toast.makeText(requireContext(),"Network Problem",Toast.LENGTH_LONG).show()
                 }
             })
         }
-
 
 
         return binding.root

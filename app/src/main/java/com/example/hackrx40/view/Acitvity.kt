@@ -7,8 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hackrx40.adapter.ActivityAdapter
 import com.example.hackrx40.databinding.FragmentAcitvityBinding
-
+import com.example.hackrx40.model.Get_Templates_Data
+import com.example.hackrx40.network.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class Acitvity : Fragment() {

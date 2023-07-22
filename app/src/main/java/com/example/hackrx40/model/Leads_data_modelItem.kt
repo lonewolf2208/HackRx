@@ -1,6 +1,7 @@
 package com.example.leadiify.model
 
 import android.os.Parcelable
+import com.example.hackrx40.model.DetailedLeads
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

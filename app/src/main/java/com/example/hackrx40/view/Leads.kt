@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hackrx40.R
 import com.example.hackrx40.adapter.LeadsAdapter
 import com.example.hackrx40.databinding.FragmentLeadsBinding
+import com.example.hackrx40.model.Leads_data_model
 import com.example.hackrx40.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback

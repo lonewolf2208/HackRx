@@ -23,6 +23,7 @@ import com.example.hackrx40.R
 import com.example.hackrx40.adapter.HomeStatsAdapter
 import com.example.hackrx40.databinding.FragmentDashboardBinding
 import com.example.hackrx40.model.home_stats_model
+
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -324,7 +325,7 @@ class Dashboard : Fragment() {
         )
         statsData.add(
             home_stats_model(
-                "Total", R.drawable.group_1000004889, "9",
+                "Total", R.drawable.group_1000004889, "75",
                 "#FE00A8"
             )
         )

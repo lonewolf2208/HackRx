@@ -1,10 +1,11 @@
 package com.example.hackrx40.network
 
-import com.example.leadiify.model.Get_Templates_Data
-import com.example.leadiify.model.Scraperdataclass
-import com.example.leadiify.model.SendConnection
+import com.example.hackrx40.model.Scraperdataclass
+import com.example.hackrx40.model.SendConnection
+import com.example.hackrx40.model.Get_Templates_Data
 import com.example.hackrx40.model.campaign_data
-import com.example.leadiify.model.sendCampaign.SendCampaignData
+import com.example.hackrx40.model.Leads_data_model
+import com.example.hackrx40.model.sendCampaign.SendCampaignData
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -29,5 +30,5 @@ interface Api {
  fun senddata(@Body scraperdataclass: Scraperdataclass) : Call<ResponseBody>
 
  @POST("/connection-request/")
- fun sendConnection(@Body data:SendConnection):Call<ResponseBody>
+ fun sendConnection(@Body data: SendConnection):Call<ResponseBody>
 }
